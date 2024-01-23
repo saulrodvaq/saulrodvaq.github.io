@@ -6,7 +6,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
 
   if (username === 'admin' && password === '123') {
     alert('Login exitoso');
-    window.location.href = 'dashboard.html';
+    window.location.href = 'index.html';
   } else {
     alert('Credenciales incorrectas. Inténtelo de nuevo.');
   }
