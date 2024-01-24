@@ -4,8 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
   </head>
-  <body>
-    <h1>Hello world</h1>
+  <body class="bg-black">
+    <nav class="w-full h-20 bg-white/95 backdrop-blur-md flex px-10 justify-between items-center">
+      <div class="font-extrabold text-6xl">DWP</div>
+      <div>
+        <a
+          href="/index.html"
+          class="hover:bg-lime-400 border-1 border-black btn rounded-full"
+          >Home</a
+        >
+        <a
+          href="/login.html"
+          class="hover:bg-lime-400 border-1 border-black btn rounded-full"
+          >Login</a
+        >
+      </div>
+    </nav>
   </body>
 </html>

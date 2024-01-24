@@ -1,10 +1,10 @@
 document.getElementById('loginForm').addEventListener('submit', function (event) {
   event.preventDefault(); 
 
-  var username = document.getElementById('username').value;
+  var username = document.getElementById('email').value;
   var password = document.getElementById('password').value;
 
-  if (username === 'admin' && password === '123') {
+  if (username === 'admin@gmail.com' && password === '123') {
     alert('Login exitoso');
     window.location.href = 'index.html';
   } else {
