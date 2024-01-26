@@ -13,36 +13,46 @@
     />
   </head>
 
-  <body class="bg-black">
+  <body class="bg-zinc-900">
     <div
       class="flex items-center justify-center flex-col absolute inset-0 gap-2"
     >
       <form
         id="loginForm"
-        class="gap-2 flex min-w-96 flex-col bg-white/95 backdrop-blur-md p-3 rounded-xl"
+        class="gap-4 bg-white/90 flex min-w-[28rem] flex-col  backdrop-blur-md p-3 rounded-xl shadow-xl p-5"
       >
-        <h1 class="text-3xl">Login</h1>
+        <h1
+          class="text-5xl tracking-wider font-bold text-lime-400"
+          style="-webkit-text-stroke: 1px #212529"
+        >
+          Login
+        </h1>
         <div class="form-group">
-          <label for="email" class="">Email</label>
+          <label for="email" class="tracking-wider text-xl font-bold"
+            >Email</label
+          >
           <input
-            type="email"
-            class="form-control"
+            class="form-control shadow-none border-1"
             id="email"
-            placeholder="Please enter your email"
+            placeholder="Enter your email"
           />
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password" class="tracking-wider text-xl font-bold"
+            >Password</label
+          >
           <input
             type="password"
-            class="form-control outline-none"
+            class="form-control shadow-none border-1"
+            minlength="8"
+            oninput="validatePassword(this)"
             id="password"
-            placeholder="Please entrer your password"
+            placeholder="8 min. (upp, low, num, spec)"
           />
         </div>
         <button
           type="submit"
-          class="bg-zinc-800 hover:bg-zinc-700 transition ease-in-out rounded-xl p-2 text-white"
+          class="hover:bg-lime-400 border-1 mt-2 w-1/2 self-center translate-x-4 btn rounded-full"
         >
           Join
         </button>

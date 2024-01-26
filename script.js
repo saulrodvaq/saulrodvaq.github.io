@@ -263,7 +263,7 @@ const theLastExperience = noWorkers => {
 			}
 			if (axis) {
 				const s = size / 10;
-				ict.fillStyle = "#000";
+				ict.fillStyle = "rgb(24 24 27)";
 				ict.fillRect(size * 0.5 - s, size * 0.5 - s, s * 2, s * 2);
 				ict.fillRect(size * 0.5 - s + dist, size * 0.5 - s, s * 2, s * 2);
 			}
@@ -374,7 +374,7 @@ const theLastExperience = noWorkers => {
 		lastTime = time;
 		// ---- clear screen ----
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		ctx.fillStyle = "#000";
+		ctx.fillStyle = "rgb(24 24 27)";
 		ctx.fillRect(0, 0, canvas.width, canvas.height * 0.15);
 		ctx.fillRect(0, canvas.height * 0.85, canvas.width, canvas.height * 0.15);
 		// ---- animate robots ----
