@@ -14,7 +14,6 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
   if (isValidEmail && isValidPassword) {
     alert('Login exitoso');
     console.log("Email: " + email, "Password: " + password);
-    window.location.href = 'index.html';
   } else {
     var errorMessage = '';
 
