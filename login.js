@@ -1,6 +1,5 @@
-document
-  .getElementById("loginForm")
-  .addEventListener("submit", function (event) {
+document.getElementById("loginForm").addEventListener("submit", function (event) {
+  
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
 
@@ -14,9 +13,7 @@ document
 
     if (isValidEmail && isValidPassword) {
       alert("Login exitoso");
-      location.reload();
-
-      return;
+      window.location.href = "index.html";
     } else {
       var errorMessage = "";
       console.log("Email: " + email, "Password: " + password);
