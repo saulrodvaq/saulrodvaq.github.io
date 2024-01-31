@@ -1,8 +1,9 @@
 body {
   background-color: #1e234d;
   font-family: Ubuntu, sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
 }
+
 
 .logo {
   animation: rotateIn 0.5s ease-out;
@@ -13,7 +14,6 @@ body {
   padding: 11px 22px;
   border-radius: 50px;
   color: #fff;
-  cursor: pointer;
   font-weight: 900;
 }
 

@@ -88,7 +88,7 @@ function update(t) {
 
 function setupCanvas() {
   canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.height = window.innerHeight + 2000;
 }
 
 ctx.strokeStyle = '#d2e055';
