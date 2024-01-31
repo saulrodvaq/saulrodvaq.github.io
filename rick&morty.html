@@ -12,6 +12,7 @@
             cursor: {
               default: "url(img/nave.png) 50 50, default",
               pointer: "url(img/pointer.png) 50 50, pointer",
+              wait: "url(img/cursor.png) 50 50, wait",
             },
           },
         },
@@ -21,10 +22,10 @@
     <link rel="stylesheet" href="rickandmorty.css" />
   </head>
   <body class="cursor-default">
-    <div class="relative flex-grow absolute">
+    <div class="relative">
       <div class="absolute flex flex-col w-full">
         <section
-          class="relative h-[50vh] flex justify-center items-center absolute"
+          class="relative min-h-[50vh] flex justify-center items-center absolute"
         >
           <img
             src="https://staticdelivery.nexusmods.com/mods/1151/images/528-0-1447526230.png"
@@ -455,19 +456,24 @@
           </svg>
         </section>
         <section class="flex flex-col min-h-[50vh] items-center gap-14 z-10">
-          <ul id="character-list" class="grid grid-cols-5 p-0 gap-4"></ul>
+          <ul id="character-list" class="grid grid-cols-5 p-0 pb-4 gap-4"></ul>
           <template id="character-template">
-            <li>
+            <li class="relative hover:scale-110 hover:z-50 transition-all">
               <div
-                class="w-46 h-64 xl:w-72 xl:h-96 bg-slate-900 rounded-2xl card"
+                class="w-46 h-64 xl:w-72 xl:h-96 card cursor-wait"
+                data-tilt
+                data-tilt-glare
               >
                 <img
                   data-id="character-image"
-                  class="w-full h-3/4 object-cover rounded-t-2xl"
+                  class="w-full h-3/4 object-cover rounded-md"
                   alt="Character Image"
                 />
                 <div class="p-4">
-                  <h3 data-id="character-name" class="text-white"></h3>
+                  <h3
+                    data-id="character-name"
+                    class="text-white text-xs lg:text-sm xl:text-xl text-center"
+                  ></h3>
                 </div>
               </div>
             </li>
@@ -484,7 +490,7 @@
             <button
               type="button"
               id="clear"
-              class="button  cursor-pointer"
+              class="button cursor-pointer"
               style="background-color: #35c9dd"
             >
               Clear
@@ -492,11 +498,11 @@
           </div>
         </section>
       </div>
+      <div class="space"></div>
       <canvas></canvas>
     </div>
-    <div class="space"></div>
-
-    <script src="./rick&morty.js"></script>
-    <script src="./trail.js"></script>
+    <script type="text/javascript" src="vanilla-tilt.js"></script>
+    <script src="rick&morty.js"></script>
+    <script src="trail.js"></script>
   </body>
 </html>

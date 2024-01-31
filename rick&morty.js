@@ -22,11 +22,23 @@ document.addEventListener("DOMContentLoaded", () => {
       const listItem = document.createElement("li");
       listItem.appendChild(clone);
       characterList.appendChild(listItem);
+
+      VanillaTilt.init(listItem.querySelectorAll('[data-tilt]'), {
+        glare: true,
+        "max-glare": 0.5,
+      });
+
+      VanillaTilt.init(listItem.querySelectorAll('[data-tilt-glare]'), {
+        glare: {
+          maxOpacity: 0.5,
+        },
+      });
     } catch (error) {
       alert("No hay más personajes disponibles.");
       lastCharacterId--;
     }
   });
+  
 
   document.getElementById("clear").addEventListener("click", () => {
     var itemList = document.getElementById("character-list");
@@ -34,3 +46,5 @@ document.addEventListener("DOMContentLoaded", () => {
     lastCharacterId = 0;
   });
 });
+
+
