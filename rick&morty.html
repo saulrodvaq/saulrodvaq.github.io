@@ -456,28 +456,48 @@
           </svg>
         </section>
         <section class="flex flex-col min-h-[50vh] items-center gap-14 z-10">
-          <ul id="character-list" class="grid grid-cols-5 mt-10 p-0 pb-4 gap-4"></ul>
+          <ul
+            id="character-list"
+            class="grid grid-cols-5 mt-10 p-0 pb-4 gap-4"
+          ></ul>
           <template id="character-template">
-            <li class="relative hover:scale-110 hover:z-50 transition-all">
-              <div
-                class="w-46 h-64 xl:w-66 xl:h-82 card cursor-wait"
-                data-tilt
-                data-tilt-glare
-              >
-                <img
-                  data-id="character-image"
-                  class="w-full h-3/4 object-cover rounded-md"
-                  alt="Character Image"
-                />
-                <div class="p-4">
-                  <h3
-                    data-id="character-name"
-                    class="text-white text-lg text-center"
-                  ></h3>
+            <li class="cardcontainer">
+              <div class="card cursor-wait" data-tilt data-tilt-glare>
+                <div class="thefront overflow-hidden p-4">
+                  <img
+                    data-id="character-image"
+                    class="w-full h-3/4 object-cover rounded-lg"
+                    alt="Character Image"
+                  />
+                  <div class="p-4">
+                    <h3
+                      data-id="character-name"
+                      class="text-white text-lg text-center"
+                    ></h3>
+                    <p data-id="character-status" class="hidden"></p>
+                    <p data-id="character-species" class="hidden"></p>
+                    <p data-id="character-type" class="hidden"></p>
+                    <p data-id="character-gender" class="hidden"></p>
+                    <p data-id="character-origin" class="hidden"></p>
+                    <p data-id="character-location" class="hidden"></p>
+                    <p data-id="character-episode" class="hidden"></p>
+                  </div>
                 </div>
               </div>
             </li>
           </template>
+          <div class="overlay">
+            <div class="absolute carddata">
+              <h1 class="text-5xl text-white" data-id="character-name"></h1>
+              <p class="text-white" data-id="character-status"></p>
+              <p class="text-white" data-id="character-species"></p>
+              <p class="text-white" data-id="character-type"></p>
+              <p class="text-white" data-id="character-gender"></p>
+              <p class="text-white" data-id="character-origin"></p>
+              <p class="text-white" data-id="character-location"></p>
+              <p class="text-white" data-id="character-episode"></p>
+            </div>
+          </div>
           <div class="flex gap-10 fixed bottom-4">
             <div class="container">
               <div class="btn"><a id="spawn" href="#">Spawn</a></div>
