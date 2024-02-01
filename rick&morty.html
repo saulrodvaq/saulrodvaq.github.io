@@ -456,11 +456,11 @@
           </svg>
         </section>
         <section class="flex flex-col min-h-[50vh] items-center gap-14 z-10">
-          <ul id="character-list" class="grid grid-cols-5 p-0 pb-4 gap-4"></ul>
+          <ul id="character-list" class="grid grid-cols-5 mt-10 p-0 pb-4 gap-4"></ul>
           <template id="character-template">
             <li class="relative hover:scale-110 hover:z-50 transition-all">
               <div
-                class="w-46 h-64 xl:w-72 xl:h-96 card cursor-wait"
+                class="w-46 h-64 xl:w-66 xl:h-82 card cursor-wait"
                 data-tilt
                 data-tilt-glare
               >
@@ -472,29 +472,17 @@
                 <div class="p-4">
                   <h3
                     data-id="character-name"
-                    class="text-white text-xs lg:text-sm xl:text-xl text-center"
+                    class="text-white text-lg text-center"
                   ></h3>
                 </div>
               </div>
             </li>
           </template>
           <div class="flex gap-10 fixed bottom-4">
-            <button
-              type="button"
-              id="spawn"
-              class="button cursor-pointer"
-              style="background-color: #ff9317"
-            >
-              Spawn Character
-            </button>
-            <button
-              type="button"
-              id="clear"
-              class="button cursor-pointer"
-              style="background-color: #35c9dd"
-            >
-              Clear
-            </button>
+            <div class="container">
+              <div class="btn"><a id="spawn" href="#">Spawn</a></div>
+              <div class="btn"><a id="clear" href="#">Clear</a></div>
+            </div>
           </div>
         </section>
       </div>
