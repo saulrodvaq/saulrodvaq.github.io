@@ -194,6 +194,12 @@ body {
   background-color: #42b4ca;
   box-shadow: 0 0 10px #bfde42;
   border-radius: 20px;
+
+}
+
+.card:hover {
+  scale: 1.1;
+  box-shadow: 0 0 15px #bfde42,0 0 15px #bfde42;
 }
 
 .thefront {
