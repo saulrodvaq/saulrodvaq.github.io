@@ -374,7 +374,7 @@ const theLastExperience = noWorkers => {
 		lastTime = time;
 		// ---- clear screen ----
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		ctx.fillStyle = "rgb(24 24 27)";
+		ctx.fillStyle = "transparent";
 		ctx.fillRect(0, 0, canvas.width, canvas.height * 0.15);
 		ctx.fillRect(0, canvas.height * 0.85, canvas.width, canvas.height * 0.15);
 		// ---- animate robots ----
