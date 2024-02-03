@@ -25,7 +25,7 @@
     <div class="relative">
       <div class="absolute flex flex-col w-full">
         <section
-          class="relative min-h-[50vh] flex justify-center items-center absolute"
+          class="relative h-[50vh] flex justify-center items-center absolute"
         >
           <img
             src="https://staticdelivery.nexusmods.com/mods/1151/images/528-0-1447526230.png"
@@ -458,10 +458,10 @@
         <section class="flex flex-col min-h-[50vh] items-center gap-14 z-10">
           <ul
             id="character-list"
-            class="grid grid-cols-5 mt-10 p-0 pb-4 gap-4"
+            class="grid grid-col-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-10 p-0 pb-4 gap-4"
           ></ul>
           <template id="character-template">
-            <li class="cardcontainer">
+            <div class="cardcontainer">
               <div class="card cursor-wait" data-tilt data-tilt-glare>
                 <div class="thefront overflow-hidden p-4">
                   <img
@@ -469,10 +469,10 @@
                     class="w-full h-3/4 object-cover rounded-lg"
                     alt="Character Image"
                   />
-                  <div class="p-4">
+                  <div class="p-1 xl:p-4">
                     <h3
                       data-id="character-name"
-                      class="text-white text-lg text-center"
+                      class="text-white text-xs 2xl:text-lg text-center"
                     ></h3>
                     <p data-id="character-status" class="hidden"></p>
                     <p data-id="character-species" class="hidden"></p>
@@ -484,11 +484,11 @@
                   </div>
                 </div>
               </div>
-            </li>
+            </div>
           </template>
           <div class="overlay">
-            <div class="absolute carddata text-2xl ">
-              <h1 class="text-5xl text-white" data-id="character-name"></h1>
+            <div class="absolute carddata text-lg xl:text-2xl">
+              <h1 class="text-3xl xl:text-5xl text-white" data-id="character-name"></h1>
               <p class="text-white" data-id="character-status"></p>
               <p class="text-white" data-id="character-species"></p>
               <p class="text-white" data-id="character-type"></p>

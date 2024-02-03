@@ -185,6 +185,20 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
+@media (max-width: 800px) {
+  .cardcontainer {
+    width: 150px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .cardcontainer {
+    width: 170px;
+    height: 240px;
+  }
+}
+
 .card {
   position: absolute;
   width: 100%;
@@ -236,6 +250,20 @@ body {
   right: 50%;
   bottom: 50%;
   scale: 2;
+}
+
+@media (max-width: 800px) {
+  .cardcontainer .clicked {
+    width: 130px;
+    height: 190px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .cardcontainer .clicked {
+    width: 150px;
+    height: 210px;
+  }
 }
 
 .overlay {
