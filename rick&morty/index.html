@@ -463,16 +463,16 @@
           <template id="character-template">
             <div class="cardcontainer">
               <div class="card cursor-wait" data-tilt data-tilt-glare>
-                <div class="thefront overflow-hidden p-4">
+                <div class="thefront overflow-hidden p-1 xl:p-4">
                   <img
                     data-id="character-image"
-                    class="w-full h-3/4 object-cover rounded-lg"
+                    class="w-full h-3/4 object-cover rounded-2xl xl:rounded-lg"
                     alt="Character Image"
                   />
-                  <div class="p-1 xl:p-4">
+                  <div class="p-2 xl:p-4">
                     <h3
                       data-id="character-name"
-                      class="text-white text-xs 2xl:text-lg text-center"
+                      class="text-white text-sm 2xl:text-lg text-center"
                     ></h3>
                     <p data-id="character-status" class="hidden"></p>
                     <p data-id="character-species" class="hidden"></p>
@@ -487,8 +487,8 @@
             </div>
           </template>
           <div class="overlay">
-            <div class="absolute carddata text-lg xl:text-2xl">
-              <h1 class="text-3xl xl:text-5xl text-white" data-id="character-name"></h1>
+            <div class="absolute carddata text-sm md:text-lg xl:text-2xl">
+              <h1 class="text-lg md:text-3xl xl:text-5xl text-white" data-id="character-name"></h1>
               <p class="text-white" data-id="character-status"></p>
               <p class="text-white" data-id="character-species"></p>
               <p class="text-white" data-id="character-type"></p>
