@@ -109,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
       clone.querySelector("[data-id='character-episode']").textContent =
         character.episode[0];
       const listItem = document.createElement("li");
+      listItem.classList.add("cardcontainer");
       listItem.appendChild(clone);
       characterList.appendChild(listItem);
 

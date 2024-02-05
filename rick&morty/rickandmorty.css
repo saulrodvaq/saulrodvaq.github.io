@@ -253,7 +253,7 @@ body {
   bottom: 50%;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 1300px) {
   .cardcontainer .clicked {
     scale: 2;
   }

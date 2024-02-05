@@ -461,7 +461,6 @@
             class="grid grid-col-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-10 p-0 pb-4 gap-4"
           ></ul>
           <template id="character-template">
-            <div class="cardcontainer">
               <div class="card cursor-wait" data-tilt data-tilt-glare>
                 <div class="thefront overflow-hidden p-1 xl:p-4">
                   <img
@@ -469,10 +468,10 @@
                     class="w-full h-3/4 object-cover rounded-2xl xl:rounded-lg"
                     alt="Character Image"
                   />
-                  <div class="p-2 xl:p-4">
+                  <div class="p-1 xl:p-4">
                     <h3
                       data-id="character-name"
-                      class="text-white text-sm 2xl:text-lg text-center"
+                      class="text-white text-xs md:text-sm 2xl:text-lg text-center"
                     ></h3>
                     <p data-id="character-status" class="hidden"></p>
                     <p data-id="character-species" class="hidden"></p>
@@ -482,8 +481,7 @@
                     <p data-id="character-location" class="hidden"></p>
                     <p data-id="character-episode" class="hidden"></p>
                   </div>
-                </div>
-              </div>
+                </div> 
             </div>
           </template>
           <div class="overlay">
