@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
       const character = await fetchCharacterById(lastCharacterId);
       updateOverlay(character);
-  
+      
       document.querySelector(".overlay [data-id='character-episode']").textContent = "First seen: " + episodeData.name;
       card.classList.add("clicked");
       document.querySelector(".overlay").style.display = "block";
