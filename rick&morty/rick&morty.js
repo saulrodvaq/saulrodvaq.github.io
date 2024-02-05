@@ -4,10 +4,26 @@ document.addEventListener("DOMContentLoaded", () => {
   let lastCharacterId = 0;
 
   async function fetchCharacterById(id) {
-    const response = await fetch(
-      `https://rickandmortyapi.com/api/character/${id}`
-    );
+    const response = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
     return response.json();
+  }
+
+  function updateStatusElement(characterStatus) {
+    const statusElement = document.querySelector(".overlay [data-id='character-status']");
+    statusElement.innerHTML = "Status: " + "<span>" + characterStatus + "</span>";
+
+    const statusSpan = statusElement.querySelector("span");
+    statusSpan.style.color = characterStatus === "Dead" ? "red" : "limegreen";
+  }
+
+  function updateOverlay(character) {
+    const overlay = document.querySelector(".overlay");
+    overlay.querySelector("[data-id='character-name']").textContent = character.name;
+    overlay.querySelector("[data-id='character-species']").textContent = "Specie: " + character.species;
+    overlay.querySelector("[data-id='character-type']").textContent = character.type === "" ? "" : "Type: " + character.type;
+    overlay.querySelector("[data-id='character-gender']").textContent = "Gender: " + character.gender;
+    overlay.querySelector("[data-id='character-origin']").textContent = "Origin: " + character.origin.name;
+    overlay.querySelector("[data-id='character-location']").textContent = "Location: " + character.location.name;
   }
 
   async function handleCardClick(event) {
@@ -18,123 +34,58 @@ document.addEventListener("DOMContentLoaded", () => {
       card.classList.remove("clicked");
       document.querySelector(".overlay").style.display = "none";
     } else {
-      const characterName = card.querySelector(
-        "[data-id='character-name']"
-      ).textContent;
-      const characterStatus = card.querySelector(
-        "[data-id='character-status']"
-      ).textContent;
-      const characterSpecies = card.querySelector(
-        "[data-id='character-species']"
-      ).textContent;
-      const characterType = card.querySelector(
-        "[data-id='character-type']"
-      ).textContent;
-      const characterGender = card.querySelector(
-        "[data-id='character-gender']"
-      ).textContent;
-      const characterOrigin = card.querySelector(
-        "[data-id='character-origin']"
-      ).textContent;
-      const characterLocation = card.querySelector(
-        "[data-id='character-location']"
-      ).textContent;
-      const characterEpisode = card.querySelector(
-        "[data-id='character-episode']"
-      ).textContent;
+      const characterStatus = card.querySelector("[data-id='character-status']").textContent;
+      updateStatusElement(characterStatus);
+      
+      const characterEpisode = card.querySelector("[data-id='character-episode']").textContent;
       const episodeResponse = await fetch(characterEpisode);
       const episodeData = await episodeResponse.json();
-      const statusElement = document.querySelector(
-        ".overlay [data-id='character-status']"
-      );
-      statusElement.innerHTML =
-        "Status: " + "<span>" + characterStatus + "</span>";
-
-      if (characterStatus === "Dead") {
-        statusElement.querySelector("span").style.color = "red";
-      } else if (characterStatus === "Alive") {
-        statusElement.querySelector("span").style.color = "limegreen";
-      }
-      document.querySelector(
-        ".overlay [data-id='character-name']"
-      ).textContent = characterName;
-      document.querySelector(
-        ".overlay [data-id='character-species']"
-      ).textContent = "Specie: " + characterSpecies;
-      document.querySelector(
-        ".overlay [data-id='character-type']"
-      ).textContent = characterType === "" ? "" : "Type: " + characterType;
-      document.querySelector(
-        ".overlay [data-id='character-gender']"
-      ).textContent = "Gender: " + characterGender;
-      document.querySelector(
-        ".overlay [data-id='character-origin']"
-      ).textContent = "Origin: " + characterOrigin;
-      document.querySelector(
-        ".overlay [data-id='character-location']"
-      ).textContent = "Location: " + characterLocation;
-      document.querySelector(
-        ".overlay [data-id='character-episode']"
-      ).textContent = "First seen: " + episodeData.name;
+      
+      const character = await fetchCharacterById(lastCharacterId);
+      updateOverlay(character);
+  
+      document.querySelector(".overlay [data-id='character-episode']").textContent = "First seen: " + episodeData.name;
       card.classList.add("clicked");
       document.querySelector(".overlay").style.display = "block";
     }
   }
 
-  document.getElementById("spawn").addEventListener("click", async () => {
+  async function spawnCharacter() {
     lastCharacterId++;
 
     try {
       const character = await fetchCharacterById(lastCharacterId);
       const clone = characterTemplate.content.cloneNode(true);
-      clone.querySelector("[data-id='character-name']").textContent =
-        character.name;
+
+      clone.querySelector("[data-id='character-name']").textContent = character.name;
       clone.querySelector("[data-id='character-image']").src = character.image;
-      clone.querySelector(
-        "[data-id='character-status']"
-      ).textContent = `${character.status}`;
-      clone.querySelector(
-        "[data-id='character-status']"
-      ).textContent = `${character.status}`;
-      clone.querySelector("[data-id='character-type']").textContent =
-        character.type;
-      clone.querySelector("[data-id='character-gender']").textContent =
-        character.gender;
-      clone.querySelector("[data-id='character-species']").textContent =
-        character.species;
-      clone.querySelector("[data-id='character-origin']").textContent =
-        character.origin.name;
-      clone.querySelector("[data-id='character-location']").textContent =
-        character.location.name;
-      clone.querySelector("[data-id='character-episode']").textContent =
-        character.episode[0];
+      clone.querySelector("[data-id='character-status']").textContent = `${character.status}`;
+      clone.querySelector("[data-id='character-type']").textContent = character.type;
+      clone.querySelector("[data-id='character-gender']").textContent = character.gender;
+      clone.querySelector("[data-id='character-species']").textContent = character.species;
+      clone.querySelector("[data-id='character-origin']").textContent = character.origin.name;
+      clone.querySelector("[data-id='character-location']").textContent = character.location.name;
+      clone.querySelector("[data-id='character-episode']").textContent = character.episode[0];
+
       const listItem = document.createElement("li");
       listItem.classList.add("cardcontainer");
       listItem.appendChild(clone);
       characterList.appendChild(listItem);
 
-      VanillaTilt.init(listItem.querySelectorAll("[data-tilt]"), {
-        glare: true,
-        "max-glare": 0.5,
-      });
-      VanillaTilt.init(listItem.querySelectorAll("[data-tilt-glare]"), {
-        glare: {
-          maxOpacity: 0.5,
-        },
-      });
+      VanillaTilt.init(listItem.querySelectorAll("[data-tilt]"), { glare: true, "max-glare": 0.5 });
+      VanillaTilt.init(listItem.querySelectorAll("[data-tilt-glare]"), { glare: { maxOpacity: 0.5 } });
 
-      listItem
-        .querySelector(".card")
-        .addEventListener("click", handleCardClick);
+      listItem.querySelector(".card").addEventListener("click", handleCardClick);
     } catch (error) {
       alert("No hay más personajes disponibles.");
       lastCharacterId--;
     }
-  });
+  }
+
+  document.getElementById("spawn").addEventListener("click", spawnCharacter);
 
   document.getElementById("clear").addEventListener("click", () => {
-    var itemList = document.getElementById("character-list");
-    itemList.replaceChildren();
+    characterList.replaceChildren();
     lastCharacterId = 0;
   });
 });
