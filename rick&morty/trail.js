@@ -1,4 +1,3 @@
-
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -57,6 +56,9 @@ function update(t) {
       window.innerHeight;
   }
 
+  ctx.strokeStyle = "#d2e055";
+  ctx.shadowColor = "#eeed1d";
+  ctx.shadowBlur = 6;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   trail.forEach((p, pIdx) => {
     const prev = pIdx === 0 ? pointer : trail[pIdx - 1];
@@ -90,8 +92,3 @@ function setupCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight + 2000;
 }
-
-ctx.strokeStyle = '#d2e055';
-
-ctx.shadowColor = '#eeed1d';
-ctx.shadowBlur = 6;
