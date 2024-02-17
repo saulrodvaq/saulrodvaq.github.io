@@ -34,16 +34,17 @@ document.addEventListener("DOMContentLoaded", () => {
       card.classList.remove("clicked");
       document.querySelector(".overlay").style.display = "none";
     } else {
+      const characterId = card.getAttribute("data-character-id");
       const characterStatus = card.querySelector("[data-id='character-status']").textContent;
       updateStatusElement(characterStatus);
-      
+  
       const characterEpisode = card.querySelector("[data-id='character-episode']").textContent;
       const episodeResponse = await fetch(characterEpisode);
       const episodeData = await episodeResponse.json();
-      
-      const character = await fetchCharacterById(lastCharacterId);
+  
+      const character = await fetchCharacterById(characterId);
       updateOverlay(character);
-      
+  
       document.querySelector(".overlay [data-id='character-episode']").textContent = "First seen: " + episodeData.name;
       card.classList.add("clicked");
       document.querySelector(".overlay").style.display = "block";
@@ -76,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
       VanillaTilt.init(listItem.querySelectorAll("[data-tilt-glare]"), { glare: { maxOpacity: 0.5 } });
 
       listItem.querySelector(".card").addEventListener("click", handleCardClick);
+      listItem.querySelector(".card").setAttribute("data-character-id", lastCharacterId);
     } catch (error) {
       alert("No hay más personajes disponibles.");
       lastCharacterId--;
