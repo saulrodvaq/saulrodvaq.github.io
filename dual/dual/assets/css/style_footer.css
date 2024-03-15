@@ -1,0 +1,77 @@
+.ulicons {
+    display: flex !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin-left: 70px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+  }
+  
+  .ulicons li {
+    list-style: none !important;
+  }
+  
+  .ulicons li a {
+    width: 60px !important;  /* Reducir el tamaño del ancho del icono */
+    height: 60px !important;  /* Reducir el tamaño de la altura del icono */
+    background-color: #fff !important;
+    text-align: center !important;
+    line-height: 60px !important;  /* Asegúrate de que esto sea igual a la altura para centrar el icono */
+    font-size: 25px !important;  /* Reducir el tamaño de la fuente del icono */
+    margin: 0 10px!important;
+    border-radius: 50% !important;
+    position: relative !important;
+    overflow: hidden !important;
+    border: 3px solid #fff !important;
+    z-index: 1 !important;
+    margin-top: 20px !important;  /* Agrega un margen en la parte superior para separar de cualquier texto encima */
+}
+  
+  .ulicons li a .icon {
+    position: relative !important;
+    color: #2e9b0f !important;
+    transition: .5s !important;
+    z-index: 3 !important;
+  }
+  
+  .ulicons li a:hover .icon {
+    color: #fff !important;
+    transform: rotateY(360deg) !important;
+  }
+  
+  .ulicons li a:before {
+    content: "" !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: #f00 !important;
+    transition: .5s !important;
+    z-index: 2 !important;
+  }
+  
+  .ulicons li a:hover:before {
+    top: 0 !important;
+  }
+  
+  .ulicons li:nth-child(1) a:before{
+    background: #3b5999 !important;
+  }
+  
+  .ulicons li:nth-child(2) a:before{
+    background: #55acee !important;
+  }
+  
+  .ulicons li:nth-child(3) a:before {
+    background: #0077b5 !important;
+  }
+  
+  .ulicons li:nth-child(4) a:before {
+    background: #dd4b39 !important;
+  }
+
+  .fa,.fab,.fal,.far,.fas {
+    line-height: 2.35;
+}

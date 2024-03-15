@@ -1,0 +1,63 @@
+.efectoboton{
+	cursor:pointer;
+	  position:relative;
+	  padding: 13px 24px;
+	  font-size: 22px;
+	  font-weight: 600;
+	  border-radius: 0.375rem 0.9rem 0.375rem 0.9rem !important;
+	  transition:all 0.5s;
+	  background-color: #70cc06;
+	  color: #fff;
+	  &:after,&:before{
+		content:" ";
+		width:10px;
+		height:10px;
+		position:absolute;
+		border :0px solid #fff;
+		transition:all 0.5s;
+		}
+	  &:after{
+		top:-2px;
+		left:-2px;
+		border-top:5px solid #2e9b0f;
+		border-left:5px solid #2e9b0f;
+	  }
+	  &:before{
+		bottom:-3px;
+		right:-2px;
+		border-bottom:5px solid #2e9b0f;
+		border-right:5px solid #2e9b0f;
+		
+	  }
+	  &:hover{
+	  color: #fff;
+	  background-color: #70cc06;
+		&:before,&:after{
+		  width:102%;
+		  height:105%;
+		  border-top-right-radius: 15px;
+		  border-bottom-left-radius: 15px;
+		}
+	  }
+	}
+	.animacionimagen {
+		animation: elasticZoomIn 1s both;
+		transform-origin: center;
+	}
+	
+	@keyframes elasticZoomIn {
+		0% {
+			transform: scale3d(0.1, 0.1, 0.1);
+			opacity: 0;
+		}
+		60% {
+			transform: scale3d(1.0, 1.0, 1.0);
+			opacity: 1;
+		}
+		80% {
+			transform: scale3d(0.9, 0.9, 0.9);
+		}
+		100% {
+			transform: scale3d(1, 1, 1);
+		}
+	}

@@ -1,0 +1,56 @@
+form {
+  text-align: center;
+  margin-top: 50px;
+}
+
+input[type="text"],
+button {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+input[type="text"] {
+  width: 300px;
+  margin-right: 10px;
+  background-color: #fff;
+  border: 1px solid #000;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0069d9;
+}
+
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.card-body {
+  padding: 20px;
+}
