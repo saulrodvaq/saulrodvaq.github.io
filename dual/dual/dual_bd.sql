@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 18-08-2023 a las 17:34:30
--- Versión del servidor: 8.0.31
--- Versión de PHP: 8.0.26
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 21-03-2024 a las 02:52:41
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,23 +27,21 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `administradores`
 --
 
-DROP TABLE IF EXISTS `administradores`;
-CREATE TABLE IF NOT EXISTS `administradores` (
-  `idAdministrador` int NOT NULL AUTO_INCREMENT,
-  `matricula` int NOT NULL,
-  `nombres` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `apellidos` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `usuario` text COLLATE utf8mb4_general_ci NOT NULL,
-  `password` text COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`idAdministrador`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `administradores` (
+  `idAdministrador` int(11) NOT NULL,
+  `matricula` int(11) NOT NULL,
+  `nombres` varchar(100) NOT NULL,
+  `apellidos` varchar(100) NOT NULL,
+  `usuario` text NOT NULL,
+  `password` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `administradores`
 --
 
 INSERT INTO `administradores` (`idAdministrador`, `matricula`, `nombres`, `apellidos`, `usuario`, `password`) VALUES
-(1, 155673, 'Pablo', 'Martínez', 'Admin', '12345'),
+(1, 155673, 'Pablo', 'Martínez', 'Admin2', '12345'),
 (2, 0, 'AdminDual', '', 'AdminDual', 'pygORN');
 
 -- --------------------------------------------------------
@@ -52,31 +50,28 @@ INSERT INTO `administradores` (`idAdministrador`, `matricula`, `nombres`, `apell
 -- Estructura de tabla para la tabla `alumnos`
 --
 
-DROP TABLE IF EXISTS `alumnos`;
-CREATE TABLE IF NOT EXISTS `alumnos` (
-  `idAlumno` int NOT NULL AUTO_INCREMENT,
-  `nombres` varchar(300) COLLATE utf8mb4_general_ci NOT NULL,
-  `apellidos` varchar(300) COLLATE utf8mb4_general_ci NOT NULL,
-  `matricula` int NOT NULL,
-  `carrera` enum('Ingeniería en Desarrollo y Gestión de Software','Ingeniería en Mecatrónica','Ingeniería en Sistemas Productivos','Ingeniería en Mantenimiento Industrial','Licenciatura en Innovación de Negocios y Mercadotecnia','Licenciatura en Gestión Institucional Educativa y Curricular','TSU en Lengua Inglesa','TSU en Tecnologías de la Información área Desarrollo de Software Multiplataforma','TSU en Desarrollo de Negocios área Mercadotecnia','TSU en Mantenimiento área Industrial','TSU en Procesos Industriales área Manufactura','TSU en Mecatrónica área Automatización') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `idEmpresa` int DEFAULT NULL,
-  `cuatrimestre` enum('1','2','3','4','5','6','7','8','9','10','11') COLLATE utf8mb4_general_ci NOT NULL,
-  `idTutor` int NOT NULL,
-  `idInstructor` int NOT NULL,
-  `idFormador` int NOT NULL,
-  `telefono` text COLLATE utf8mb4_general_ci NOT NULL,
-  `correo` text COLLATE utf8mb4_general_ci NOT NULL,
+CREATE TABLE `alumnos` (
+  `idAlumno` int(11) NOT NULL,
+  `nombres` varchar(300) NOT NULL,
+  `apellidos` varchar(300) NOT NULL,
+  `matricula` int(11) NOT NULL,
+  `carrera` enum('Ingeniería en Desarrollo y Gestión de Software','Ingeniería en Mecatrónica','Ingeniería en Sistemas Productivos','Ingeniería en Mantenimiento Industrial','Licenciatura en Innovación de Negocios y Mercadotecnia','Licenciatura en Gestión Institucional Educativa y Curricular','TSU en Lengua Inglesa','TSU en Tecnologías de la Información área Desarrollo de Software Multiplataforma','TSU en Desarrollo de Negocios área Mercadotecnia','TSU en Mantenimiento área Industrial','TSU en Procesos Industriales área Manufactura','TSU en Mecatrónica área Automatización') NOT NULL,
+  `idEmpresa` int(11) DEFAULT NULL,
+  `cuatrimestre` enum('1','2','3','4','5','6','7','8','9','10','11') NOT NULL,
+  `idTutor` int(11) NOT NULL,
+  `idInstructor` int(11) NOT NULL,
+  `idFormador` int(11) NOT NULL,
+  `telefono` text NOT NULL,
+  `correo` text NOT NULL,
   `ingreso` date NOT NULL,
   `fecha_fin` date NOT NULL,
-  `duracion` enum('1 Cuatrimestre','2 Cuatrimestres','3 Cuatrimestres','4 Cuatrimestres','5 Cuatrimestres','6 Cuatrimestres','7 Cuatrimestres','8 Cuatrimestres','9 Cuatrimestres','10 Cuatrimestres','11 Cuatrimestres') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `usuario` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
-  `estatus_alumno` enum('Activo','Baja','Incapacitado','Suspendido','En proceso','Finalizado') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Activo',
-  `motivo_baja` varchar(320) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `observaciones` varchar(320) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Sin Observaciones.',
-  PRIMARY KEY (`idAlumno`),
-  KEY `fk_alumnos_empresas` (`idEmpresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `duracion` enum('1 Cuatrimestre','2 Cuatrimestres','3 Cuatrimestres','4 Cuatrimestres','5 Cuatrimestres','6 Cuatrimestres','7 Cuatrimestres','8 Cuatrimestres','9 Cuatrimestres','10 Cuatrimestres','11 Cuatrimestres') DEFAULT NULL,
+  `usuario` varchar(10) NOT NULL,
+  `password` varchar(10) NOT NULL,
+  `estatus_alumno` enum('Activo','Baja','Incapacitado','Suspendido','En proceso','Finalizado') NOT NULL DEFAULT 'Activo',
+  `motivo_baja` varchar(320) NOT NULL,
+  `observaciones` varchar(320) NOT NULL DEFAULT 'Sin Observaciones.'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `alumnos`
@@ -144,13 +139,10 @@ INSERT INTO `alumnos` (`idAlumno`, `nombres`, `apellidos`, `matricula`, `carrera
 -- Estructura de tabla para la tabla `alumnos_docentes`
 --
 
-DROP TABLE IF EXISTS `alumnos_docentes`;
-CREATE TABLE IF NOT EXISTS `alumnos_docentes` (
-  `idAlumno` int DEFAULT NULL,
-  `idDocente` int DEFAULT NULL,
-  KEY `idAlumno` (`idAlumno`),
-  KEY `idDocente` (`idDocente`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `alumnos_docentes` (
+  `idAlumno` int(11) DEFAULT NULL,
+  `idDocente` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `alumnos_docentes`
@@ -165,19 +157,17 @@ INSERT INTO `alumnos_docentes` (`idAlumno`, `idDocente`) VALUES
 -- Estructura de tabla para la tabla `alumnos_postulados`
 --
 
-DROP TABLE IF EXISTS `alumnos_postulados`;
-CREATE TABLE IF NOT EXISTS `alumnos_postulados` (
-  `idPostulado` int NOT NULL AUTO_INCREMENT,
-  `nombres` text COLLATE utf8mb4_general_ci NOT NULL,
-  `apellidos` text COLLATE utf8mb4_general_ci NOT NULL,
-  `matricula` int NOT NULL,
-  `carrera` enum('Ingeniería en Desarrollo y Gestión de Software','Ingeniería en Mecatrónica','Ingeniería en Sistemas Productivos','Ingeniería en Mantenimiento Industrial','Licenciatura en Innovación de Negocios y Mercadotecnia','Licenciatura en Gestión Institucional Educativa y Curricular','TSU en Lengua Inglesa','TSU en Tecnologías de la Información área Desarrollo de Software','TSU en Desarrollo de Negocios área Mercadotecnia','TSU en Mantenimiento área Industrial','TSU en Procesos Industriales área Manufactura','TSU en Mecatrónica área Automatización') COLLATE utf8mb4_general_ci NOT NULL,
-  `cuatrimestre` enum('1','2','3','4','5','6','7','8','9','10','11') COLLATE utf8mb4_general_ci NOT NULL,
-  `correo` text COLLATE utf8mb4_general_ci NOT NULL,
-  `telefono` text COLLATE utf8mb4_general_ci NOT NULL,
-  `empresa` text COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`idPostulado`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `alumnos_postulados` (
+  `idPostulado` int(11) NOT NULL,
+  `nombres` text NOT NULL,
+  `apellidos` text NOT NULL,
+  `matricula` int(11) NOT NULL,
+  `carrera` enum('Ingeniería en Desarrollo y Gestión de Software','Ingeniería en Mecatrónica','Ingeniería en Sistemas Productivos','Ingeniería en Mantenimiento Industrial','Licenciatura en Innovación de Negocios y Mercadotecnia','Licenciatura en Gestión Institucional Educativa y Curricular','TSU en Lengua Inglesa','TSU en Tecnologías de la Información área Desarrollo de Software','TSU en Desarrollo de Negocios área Mercadotecnia','TSU en Mantenimiento área Industrial','TSU en Procesos Industriales área Manufactura','TSU en Mecatrónica área Automatización') NOT NULL,
+  `cuatrimestre` enum('1','2','3','4','5','6','7','8','9','10','11') NOT NULL,
+  `correo` text NOT NULL,
+  `telefono` text NOT NULL,
+  `empresa` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `alumnos_postulados`
@@ -192,16 +182,13 @@ INSERT INTO `alumnos_postulados` (`idPostulado`, `nombres`, `apellidos`, `matric
 -- Estructura de tabla para la tabla `asignaturas`
 --
 
-DROP TABLE IF EXISTS `asignaturas`;
-CREATE TABLE IF NOT EXISTS `asignaturas` (
-  `idAsignatura` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `competencia` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `idCuatrimestre` int DEFAULT NULL,
-  `idCarrera` int DEFAULT NULL,
-  PRIMARY KEY (`idAsignatura`),
-  KEY `cuatrimestre_id` (`idCuatrimestre`)
-) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `asignaturas` (
+  `idAsignatura` int(11) NOT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
+  `competencia` text NOT NULL,
+  `idCuatrimestre` int(11) DEFAULT NULL,
+  `idCarrera` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `asignaturas`
@@ -240,43 +227,40 @@ INSERT INTO `asignaturas` (`idAsignatura`, `nombre`, `competencia`, `idCuatrimes
 -- Estructura de tabla para la tabla `borradores`
 --
 
-DROP TABLE IF EXISTS `borradores`;
-CREATE TABLE IF NOT EXISTS `borradores` (
-  `idBorrador` int NOT NULL AUTO_INCREMENT,
-  `idAlumno` int NOT NULL,
-  `matricula` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `nombres` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `apellidos` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `carrera` enum('Ingeniería en Desarrollo y Gestión de Software','Ingeniería en Mecatrónica','Ingeniería en Sistemas Productivos','Ingeniería en Mantenimiento Industrial','Licenciatura en Innovación de Negocios y Mercadotecnia','Licenciatura en Gestión Institucional Educativa y Curricular','TSU en Lengua Inglesa','TSU en Tecnologías de la Información área Desarrollo de Software Multiplataforma','TSU en Desarrollo de Negocios área Mercadotecnia','TSU en Mantenimiento área Industrial','TSU en Procesos Industriales área Manufactura','TSU en Mecatrónica área Automatización') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `empresa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `idTutor` int NOT NULL,
-  `idInstructor` int NOT NULL,
-  `semana` enum('1','2','3','4','5','6','7','8','9','10','11','12') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+CREATE TABLE `borradores` (
+  `idBorrador` int(11) NOT NULL,
+  `idAlumno` int(11) NOT NULL,
+  `matricula` text NOT NULL,
+  `nombres` text NOT NULL,
+  `apellidos` text NOT NULL,
+  `carrera` enum('Ingeniería en Desarrollo y Gestión de Software','Ingeniería en Mecatrónica','Ingeniería en Sistemas Productivos','Ingeniería en Mantenimiento Industrial','Licenciatura en Innovación de Negocios y Mercadotecnia','Licenciatura en Gestión Institucional Educativa y Curricular','TSU en Lengua Inglesa','TSU en Tecnologías de la Información área Desarrollo de Software Multiplataforma','TSU en Desarrollo de Negocios área Mercadotecnia','TSU en Mantenimiento área Industrial','TSU en Procesos Industriales área Manufactura','TSU en Mecatrónica área Automatización') NOT NULL,
+  `empresa` text NOT NULL,
+  `idTutor` int(11) NOT NULL,
+  `idInstructor` int(11) NOT NULL,
+  `semana` enum('1','2','3','4','5','6','7','8','9','10','11','12') NOT NULL,
   `f_Inicio` date NOT NULL,
   `f_Fin` date NOT NULL,
-  `cuatrimestre` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `resumen_L` varchar(8000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `img_L` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `resumen_M` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `img_M` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `resumen_Mi` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `img_Mi` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `resumen_J` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `img_J` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `resumen_V` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `img_V` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `fecha_L` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `fecha_M` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `fecha_Mi` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `fecha_J` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `fecha_V` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `retro_tutor` varchar(350) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `retro_instructor` varchar(350) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `estatus_tutor` enum('aprobado','pendiente','no_aprobado','sin_revisar') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'sin_revisar',
-  `estatus_instructor` enum('aprobado','pendiente','no_aprobado','sin_revisar') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'sin_revisar',
-  PRIMARY KEY (`idBorrador`),
-  KEY `idAlumno` (`idAlumno`)
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `cuatrimestre` text NOT NULL,
+  `resumen_L` varchar(8000) DEFAULT NULL,
+  `img_L` mediumtext NOT NULL,
+  `resumen_M` mediumtext DEFAULT NULL,
+  `img_M` mediumtext NOT NULL,
+  `resumen_Mi` mediumtext DEFAULT NULL,
+  `img_Mi` mediumtext NOT NULL,
+  `resumen_J` mediumtext DEFAULT NULL,
+  `img_J` mediumtext NOT NULL,
+  `resumen_V` mediumtext DEFAULT NULL,
+  `img_V` mediumtext NOT NULL,
+  `fecha_L` varchar(10) NOT NULL,
+  `fecha_M` varchar(10) NOT NULL,
+  `fecha_Mi` varchar(10) NOT NULL,
+  `fecha_J` varchar(10) NOT NULL,
+  `fecha_V` varchar(10) NOT NULL,
+  `retro_tutor` varchar(350) DEFAULT NULL,
+  `retro_instructor` varchar(350) DEFAULT NULL,
+  `estatus_tutor` enum('aprobado','pendiente','no_aprobado','sin_revisar') NOT NULL DEFAULT 'sin_revisar',
+  `estatus_instructor` enum('aprobado','pendiente','no_aprobado','sin_revisar') NOT NULL DEFAULT 'sin_revisar'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `borradores`
@@ -291,12 +275,10 @@ INSERT INTO `borradores` (`idBorrador`, `idAlumno`, `matricula`, `nombres`, `ape
 -- Estructura de tabla para la tabla `carreras`
 --
 
-DROP TABLE IF EXISTS `carreras`;
-CREATE TABLE IF NOT EXISTS `carreras` (
-  `idCarrera` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  PRIMARY KEY (`idCarrera`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `carreras` (
+  `idCarrera` int(11) NOT NULL,
+  `nombre` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `carreras`
@@ -322,12 +304,10 @@ INSERT INTO `carreras` (`idCarrera`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `cuatrimestres`
 --
 
-DROP TABLE IF EXISTS `cuatrimestres`;
-CREATE TABLE IF NOT EXISTS `cuatrimestres` (
-  `idCuatrimestre` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  PRIMARY KEY (`idCuatrimestre`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `cuatrimestres` (
+  `idCuatrimestre` int(11) NOT NULL,
+  `nombre` varchar(50) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `cuatrimestres`
@@ -350,17 +330,15 @@ INSERT INTO `cuatrimestres` (`idCuatrimestre`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `directores`
 --
 
-DROP TABLE IF EXISTS `directores`;
-CREATE TABLE IF NOT EXISTS `directores` (
-  `idDirector` int NOT NULL AUTO_INCREMENT,
-  `tipo` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `matricula` int NOT NULL,
-  `nombres` varchar(300) COLLATE utf8mb4_general_ci NOT NULL,
-  `apellidos` varchar(300) COLLATE utf8mb4_general_ci NOT NULL,
-  `usuario` varchar(300) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(300) COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`idDirector`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `directores` (
+  `idDirector` int(11) NOT NULL,
+  `tipo` varchar(100) NOT NULL,
+  `matricula` int(11) NOT NULL,
+  `nombres` varchar(300) NOT NULL,
+  `apellidos` varchar(300) NOT NULL,
+  `usuario` varchar(300) NOT NULL,
+  `password` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `directores`
@@ -376,16 +354,14 @@ INSERT INTO `directores` (`idDirector`, `tipo`, `matricula`, `nombres`, `apellid
 -- Estructura de tabla para la tabla `docentes`
 --
 
-DROP TABLE IF EXISTS `docentes`;
-CREATE TABLE IF NOT EXISTS `docentes` (
-  `idDocente` int NOT NULL AUTO_INCREMENT,
-  `matricula` int NOT NULL,
-  `nombres` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `apellidos` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `usuario` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `password` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`idDocente`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `docentes` (
+  `idDocente` int(11) NOT NULL,
+  `matricula` int(11) NOT NULL,
+  `nombres` text NOT NULL,
+  `apellidos` text NOT NULL,
+  `usuario` text NOT NULL,
+  `password` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `docentes`
@@ -400,45 +376,42 @@ INSERT INTO `docentes` (`idDocente`, `matricula`, `nombres`, `apellidos`, `usuar
 -- Estructura de tabla para la tabla `edit_reportes`
 --
 
-DROP TABLE IF EXISTS `edit_reportes`;
-CREATE TABLE IF NOT EXISTS `edit_reportes` (
-  `idEReporte` int NOT NULL AUTO_INCREMENT,
-  `idReporteOriginal` int NOT NULL,
-  `idAlumno` int NOT NULL,
-  `matricula` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `nombres` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `apellidos` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `carrera` enum('Ingeniería en Desarrollo y Gestión de Software','Ingeniería en Mecatrónica','Ingeniería en Sistemas Productivos','Ingeniería en Mantenimiento Industrial','Licenciatura en Innovación de Negocios y Mercadotecnia','Licenciatura en Gestión Institucional Educativa y Curricular','TSU en Lengua Inglesa','TSU en Tecnologías de la Información área Desarrollo de Software Multiplataforma','TSU en Desarrollo de Negocios área Mercadotecnia','TSU en Mantenimiento área Industrial','TSU en Procesos Industriales área Manufactura','TSU en Mecatrónica área Automatización') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `idTutor` int NOT NULL,
-  `idInstructor` int NOT NULL,
-  `idFormador` int NOT NULL,
-  `empresa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `semana` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+CREATE TABLE `edit_reportes` (
+  `idEReporte` int(11) NOT NULL,
+  `idReporteOriginal` int(11) NOT NULL,
+  `idAlumno` int(11) NOT NULL,
+  `matricula` text NOT NULL,
+  `nombres` text NOT NULL,
+  `apellidos` text NOT NULL,
+  `carrera` enum('Ingeniería en Desarrollo y Gestión de Software','Ingeniería en Mecatrónica','Ingeniería en Sistemas Productivos','Ingeniería en Mantenimiento Industrial','Licenciatura en Innovación de Negocios y Mercadotecnia','Licenciatura en Gestión Institucional Educativa y Curricular','TSU en Lengua Inglesa','TSU en Tecnologías de la Información área Desarrollo de Software Multiplataforma','TSU en Desarrollo de Negocios área Mercadotecnia','TSU en Mantenimiento área Industrial','TSU en Procesos Industriales área Manufactura','TSU en Mecatrónica área Automatización') NOT NULL,
+  `idTutor` int(11) NOT NULL,
+  `idInstructor` int(11) NOT NULL,
+  `idFormador` int(11) NOT NULL,
+  `empresa` text NOT NULL,
+  `semana` varchar(11) NOT NULL,
   `f_Inicio` date NOT NULL,
   `f_Fin` date NOT NULL,
-  `cuatrimestre` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `resumen_L` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `resumen_M` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `resumen_Mi` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `resumen_J` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `resumen_V` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `fecha_L` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `img_L` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `img_M` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `img_Mi` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `img_J` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `img_V` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `fecha_M` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `fecha_Mi` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `fecha_J` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `fecha_V` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `retro_tutor` varchar(350) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `retro_instructor` varchar(350) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `estatus_tutor` enum('aprobado','pendiente','no_aprobado','sin_revisar') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'sin_revisar',
-  `estatus_instructor` enum('aprobado','pendiente','no_aprobado','sin_revisar') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'sin_revisar',
-  PRIMARY KEY (`idEReporte`),
-  KEY `idAlumno` (`idAlumno`)
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `cuatrimestre` text NOT NULL,
+  `resumen_L` mediumtext DEFAULT NULL,
+  `resumen_M` mediumtext DEFAULT NULL,
+  `resumen_Mi` mediumtext DEFAULT NULL,
+  `resumen_J` mediumtext DEFAULT NULL,
+  `resumen_V` mediumtext DEFAULT NULL,
+  `fecha_L` varchar(10) DEFAULT NULL,
+  `img_L` mediumtext NOT NULL,
+  `img_M` mediumtext NOT NULL,
+  `img_Mi` mediumtext NOT NULL,
+  `img_J` mediumtext NOT NULL,
+  `img_V` mediumtext NOT NULL,
+  `fecha_M` varchar(10) DEFAULT NULL,
+  `fecha_Mi` varchar(10) DEFAULT NULL,
+  `fecha_J` varchar(10) DEFAULT NULL,
+  `fecha_V` varchar(10) DEFAULT NULL,
+  `retro_tutor` varchar(350) DEFAULT NULL,
+  `retro_instructor` varchar(350) DEFAULT NULL,
+  `estatus_tutor` enum('aprobado','pendiente','no_aprobado','sin_revisar') NOT NULL DEFAULT 'sin_revisar',
+  `estatus_instructor` enum('aprobado','pendiente','no_aprobado','sin_revisar') NOT NULL DEFAULT 'sin_revisar'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `edit_reportes`
@@ -511,27 +484,25 @@ INSERT INTO `edit_reportes` (`idEReporte`, `idReporteOriginal`, `idAlumno`, `mat
 -- Estructura de tabla para la tabla `empresas`
 --
 
-DROP TABLE IF EXISTS `empresas`;
-CREATE TABLE IF NOT EXISTS `empresas` (
-  `idEmpresa` int NOT NULL AUTO_INCREMENT,
-  `nombreEmp` text COLLATE utf8mb4_general_ci NOT NULL,
-  `colonia` text COLLATE utf8mb4_general_ci NOT NULL,
-  `municipio` enum('Santa Catarina','Monterrey','García','San Pedro','Otro') COLLATE utf8mb4_general_ci NOT NULL,
-  `calle` text COLLATE utf8mb4_general_ci NOT NULL,
-  `numero` text COLLATE utf8mb4_general_ci NOT NULL,
-  `cp` text COLLATE utf8mb4_general_ci NOT NULL,
-  `giro` enum('Agricultura y actividades del campo','Minería','Energía eléctrica y suministro de agua y de gas','Construcción','Industrias manufactureras','Comercio','Transportes, correos y almacenamiento','Información en medios masivos','Servicios financieros y de seguros','Servicios inmobiliarios y de alquiler de bienes muebles e intangibles','Servicios profesionales, científicos y técnicos','Corporativos','Servicios de apoyo a los negocios y manejo de residuos y desechos','Servicios educativos','Servicios de salud y de asistencia social','Servicios de esparcimiento culturales y deportivos','Servicios de alojamiento temporal y de preparación de alimentos y bebidas','Otros servicios','Dependencias gubernamentales') COLLATE utf8mb4_general_ci NOT NULL,
-  `razon_social` varchar(500) COLLATE utf8mb4_general_ci NOT NULL,
-  `parqueIndustrial` enum('si','no') COLLATE utf8mb4_general_ci NOT NULL,
-  `nombreC` text COLLATE utf8mb4_general_ci NOT NULL,
-  `telefono` text COLLATE utf8mb4_general_ci NOT NULL,
-  `correo` text COLLATE utf8mb4_general_ci NOT NULL,
-  `puesto` text COLLATE utf8mb4_general_ci NOT NULL,
+CREATE TABLE `empresas` (
+  `idEmpresa` int(11) NOT NULL,
+  `nombreEmp` text NOT NULL,
+  `colonia` text NOT NULL,
+  `municipio` enum('Santa Catarina','Monterrey','García','San Pedro','Otro') NOT NULL,
+  `calle` text NOT NULL,
+  `numero` text NOT NULL,
+  `cp` text NOT NULL,
+  `giro` enum('Agricultura y actividades del campo','Minería','Energía eléctrica y suministro de agua y de gas','Construcción','Industrias manufactureras','Comercio','Transportes, correos y almacenamiento','Información en medios masivos','Servicios financieros y de seguros','Servicios inmobiliarios y de alquiler de bienes muebles e intangibles','Servicios profesionales, científicos y técnicos','Corporativos','Servicios de apoyo a los negocios y manejo de residuos y desechos','Servicios educativos','Servicios de salud y de asistencia social','Servicios de esparcimiento culturales y deportivos','Servicios de alojamiento temporal y de preparación de alimentos y bebidas','Otros servicios','Dependencias gubernamentales') NOT NULL,
+  `razon_social` varchar(500) NOT NULL,
+  `parqueIndustrial` enum('si','no') NOT NULL,
+  `nombreC` text NOT NULL,
+  `telefono` text NOT NULL,
+  `correo` text NOT NULL,
+  `puesto` text NOT NULL,
   `ingreso` date NOT NULL,
-  `estatus_empresa` enum('Activo','Desvinculado','En proceso') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Activo',
-  `permite_imagenes` enum('Si','No') COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`idEmpresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `estatus_empresa` enum('Activo','Desvinculado','En proceso') NOT NULL DEFAULT 'Activo',
+  `permite_imagenes` enum('Si','No') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `empresas`
@@ -554,23 +525,21 @@ INSERT INTO `empresas` (`idEmpresa`, `nombreEmp`, `colonia`, `municipio`, `calle
 -- Estructura de tabla para la tabla `empresas_postuladas`
 --
 
-DROP TABLE IF EXISTS `empresas_postuladas`;
-CREATE TABLE IF NOT EXISTS `empresas_postuladas` (
-  `idEmpresaPostulada` int NOT NULL AUTO_INCREMENT,
-  `nombreEmp` text COLLATE utf8mb4_general_ci NOT NULL,
-  `colonia` text COLLATE utf8mb4_general_ci NOT NULL,
-  `municipio` enum('Santa Catarina','Monterrey','García','San Pedro','Otro') COLLATE utf8mb4_general_ci NOT NULL,
-  `calle` text COLLATE utf8mb4_general_ci NOT NULL,
-  `numero` text COLLATE utf8mb4_general_ci NOT NULL,
-  `cp` text COLLATE utf8mb4_general_ci NOT NULL,
-  `giro` enum('Agricultura y actividades del campo','Minería','Energía eléctrica y suministro de agua y de gas','Construcción','Industrias manufactureras','Comercio','Transportes, correos y almacenamiento','Información en medios masivos','Servicios financieros y de seguros','Servicios inmobiliarios y de alquiler de bienes muebles e intangibles','Servicios profesionales, científicos y técnicos','Corporativos','Servicios de apoyo a los negocios y manejo de residuos y desechos','Servicios educativos','Servicios de salud y de asistencia social','Servicios de esparcimiento culturales y deportivos','Servicios de alojamiento temporal y de preparación de alimentos y bebidas','Otros servicios','Dependencias gubernamentales') COLLATE utf8mb4_general_ci NOT NULL,
-  `parqueIndustrial` enum('si','no') COLLATE utf8mb4_general_ci NOT NULL,
-  `nombreC` text COLLATE utf8mb4_general_ci NOT NULL,
-  `telefono` text COLLATE utf8mb4_general_ci NOT NULL,
-  `correo` text COLLATE utf8mb4_general_ci NOT NULL,
-  `puesto` text COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`idEmpresaPostulada`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `empresas_postuladas` (
+  `idEmpresaPostulada` int(11) NOT NULL,
+  `nombreEmp` text NOT NULL,
+  `colonia` text NOT NULL,
+  `municipio` enum('Santa Catarina','Monterrey','García','San Pedro','Otro') NOT NULL,
+  `calle` text NOT NULL,
+  `numero` text NOT NULL,
+  `cp` text NOT NULL,
+  `giro` enum('Agricultura y actividades del campo','Minería','Energía eléctrica y suministro de agua y de gas','Construcción','Industrias manufactureras','Comercio','Transportes, correos y almacenamiento','Información en medios masivos','Servicios financieros y de seguros','Servicios inmobiliarios y de alquiler de bienes muebles e intangibles','Servicios profesionales, científicos y técnicos','Corporativos','Servicios de apoyo a los negocios y manejo de residuos y desechos','Servicios educativos','Servicios de salud y de asistencia social','Servicios de esparcimiento culturales y deportivos','Servicios de alojamiento temporal y de preparación de alimentos y bebidas','Otros servicios','Dependencias gubernamentales') NOT NULL,
+  `parqueIndustrial` enum('si','no') NOT NULL,
+  `nombreC` text NOT NULL,
+  `telefono` text NOT NULL,
+  `correo` text NOT NULL,
+  `puesto` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `empresas_postuladas`
@@ -587,17 +556,15 @@ INSERT INTO `empresas_postuladas` (`idEmpresaPostulada`, `nombreEmp`, `colonia`,
 -- Estructura de tabla para la tabla `formadores`
 --
 
-DROP TABLE IF EXISTS `formadores`;
-CREATE TABLE IF NOT EXISTS `formadores` (
-  `idFormador` int NOT NULL AUTO_INCREMENT,
-  `idEmpresa` int NOT NULL,
-  `matricula` int NOT NULL,
-  `nombres` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `apellidos` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `usuario` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `password` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`idFormador`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `formadores` (
+  `idFormador` int(11) NOT NULL,
+  `idEmpresa` int(11) NOT NULL,
+  `matricula` int(11) NOT NULL,
+  `nombres` text NOT NULL,
+  `apellidos` text NOT NULL,
+  `usuario` text NOT NULL,
+  `password` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `formadores`
@@ -617,13 +584,11 @@ INSERT INTO `formadores` (`idFormador`, `idEmpresa`, `matricula`, `nombres`, `ap
 -- Estructura de tabla para la tabla `generaciones`
 --
 
-DROP TABLE IF EXISTS `generaciones`;
-CREATE TABLE IF NOT EXISTS `generaciones` (
-  `idGeneracion` int NOT NULL AUTO_INCREMENT,
-  `anio` int NOT NULL,
-  `cuatrimestre` int NOT NULL,
-  PRIMARY KEY (`idGeneracion`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `generaciones` (
+  `idGeneracion` int(11) NOT NULL,
+  `anio` int(11) NOT NULL,
+  `cuatrimestre` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `generaciones`
@@ -655,17 +620,12 @@ INSERT INTO `generaciones` (`idGeneracion`, `anio`, `cuatrimestre`) VALUES
 -- Estructura de tabla para la tabla `historial_docentes`
 --
 
-DROP TABLE IF EXISTS `historial_docentes`;
-CREATE TABLE IF NOT EXISTS `historial_docentes` (
-  `idHistorial` int NOT NULL AUTO_INCREMENT,
-  `idAlumno` int DEFAULT NULL,
-  `idDocente` int DEFAULT NULL,
-  `fecha_asignacion` date DEFAULT NULL,
-  PRIMARY KEY (`idHistorial`),
-  KEY `idInstructor` (`idDocente`),
-  KEY `idDocente` (`idDocente`),
-  KEY `idAlumno_2` (`idAlumno`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `historial_docentes` (
+  `idHistorial` int(11) NOT NULL,
+  `idAlumno` int(11) DEFAULT NULL,
+  `idDocente` int(11) DEFAULT NULL,
+  `fecha_asignacion` date DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `historial_docentes`
@@ -694,16 +654,12 @@ INSERT INTO `historial_docentes` (`idHistorial`, `idAlumno`, `idDocente`, `fecha
 -- Estructura de tabla para la tabla `historial_instructores`
 --
 
-DROP TABLE IF EXISTS `historial_instructores`;
-CREATE TABLE IF NOT EXISTS `historial_instructores` (
-  `idHistorial` int NOT NULL AUTO_INCREMENT,
-  `idAlumno` int DEFAULT NULL,
-  `idInstructor` int DEFAULT NULL,
-  `fecha_asignacion` date DEFAULT NULL,
-  PRIMARY KEY (`idHistorial`),
-  KEY `idAlumno` (`idAlumno`),
-  KEY `idInstructor` (`idInstructor`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `historial_instructores` (
+  `idHistorial` int(11) NOT NULL,
+  `idAlumno` int(11) DEFAULT NULL,
+  `idInstructor` int(11) DEFAULT NULL,
+  `fecha_asignacion` date DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `historial_instructores`
@@ -725,16 +681,12 @@ INSERT INTO `historial_instructores` (`idHistorial`, `idAlumno`, `idInstructor`,
 -- Estructura de tabla para la tabla `historial_tutores`
 --
 
-DROP TABLE IF EXISTS `historial_tutores`;
-CREATE TABLE IF NOT EXISTS `historial_tutores` (
-  `idHistorial` int NOT NULL AUTO_INCREMENT,
-  `idAlumno` int DEFAULT NULL,
-  `idTutor` int DEFAULT NULL,
-  `fecha_asignacion` date DEFAULT NULL,
-  PRIMARY KEY (`idHistorial`),
-  KEY `idAlumno` (`idAlumno`),
-  KEY `idTutor` (`idTutor`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `historial_tutores` (
+  `idHistorial` int(11) NOT NULL,
+  `idAlumno` int(11) DEFAULT NULL,
+  `idTutor` int(11) DEFAULT NULL,
+  `fecha_asignacion` date DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `historial_tutores`
@@ -752,17 +704,15 @@ INSERT INTO `historial_tutores` (`idHistorial`, `idAlumno`, `idTutor`, `fecha_as
 -- Estructura de tabla para la tabla `instructores`
 --
 
-DROP TABLE IF EXISTS `instructores`;
-CREATE TABLE IF NOT EXISTS `instructores` (
-  `idInstructor` int NOT NULL AUTO_INCREMENT,
-  `idEmpresa` int NOT NULL,
-  `matricula` int NOT NULL,
-  `nombres` text COLLATE utf8mb4_general_ci NOT NULL,
-  `apellidos` text COLLATE utf8mb4_general_ci NOT NULL,
-  `usuario` text COLLATE utf8mb4_general_ci NOT NULL,
-  `password` text COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`idInstructor`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `instructores` (
+  `idInstructor` int(11) NOT NULL,
+  `idEmpresa` int(11) NOT NULL,
+  `matricula` int(11) NOT NULL,
+  `nombres` text NOT NULL,
+  `apellidos` text NOT NULL,
+  `usuario` text NOT NULL,
+  `password` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `instructores`
@@ -780,14 +730,12 @@ INSERT INTO `instructores` (`idInstructor`, `idEmpresa`, `matricula`, `nombres`,
 -- Estructura de tabla para la tabla `puestos`
 --
 
-DROP TABLE IF EXISTS `puestos`;
-CREATE TABLE IF NOT EXISTS `puestos` (
-  `idPuesto` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `idEmpresa` int DEFAULT NULL,
-  `idCarrera` int DEFAULT NULL,
-  PRIMARY KEY (`idPuesto`)
-) ENGINE=MyISAM AUTO_INCREMENT=273 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `puestos` (
+  `idPuesto` int(11) NOT NULL,
+  `nombre` varchar(200) DEFAULT NULL,
+  `idEmpresa` int(11) DEFAULT NULL,
+  `idCarrera` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `puestos`
@@ -804,16 +752,12 @@ INSERT INTO `puestos` (`idPuesto`, `nombre`, `idEmpresa`, `idCarrera`) VALUES
 -- Estructura de tabla para la tabla `puestos_asignaturas`
 --
 
-DROP TABLE IF EXISTS `puestos_asignaturas`;
-CREATE TABLE IF NOT EXISTS `puestos_asignaturas` (
-  `idPuestoAsignatura` int NOT NULL AUTO_INCREMENT,
-  `idPuesto` int DEFAULT NULL,
-  `idAsignatura` int DEFAULT NULL,
-  `cumple` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`idPuestoAsignatura`),
-  KEY `idAsignatura` (`idAsignatura`),
-  KEY `fk_puestos` (`idPuesto`)
-) ENGINE=MyISAM AUTO_INCREMENT=184 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `puestos_asignaturas` (
+  `idPuestoAsignatura` int(11) NOT NULL,
+  `idPuesto` int(11) DEFAULT NULL,
+  `idAsignatura` int(11) DEFAULT NULL,
+  `cumple` tinyint(1) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `puestos_asignaturas`
@@ -864,47 +808,45 @@ INSERT INTO `puestos_asignaturas` (`idPuestoAsignatura`, `idPuesto`, `idAsignatu
 -- Estructura de tabla para la tabla `reportes`
 --
 
-DROP TABLE IF EXISTS `reportes`;
-CREATE TABLE IF NOT EXISTS `reportes` (
-  `idReporte` int NOT NULL AUTO_INCREMENT,
-  `idAlumno` int NOT NULL,
-  `matricula` text COLLATE utf8mb4_general_ci NOT NULL,
-  `nombres` text COLLATE utf8mb4_general_ci NOT NULL,
-  `apellidos` text COLLATE utf8mb4_general_ci NOT NULL,
-  `carrera` enum('Ingeniería en Desarrollo y Gestión de Software','Ingeniería en Mecatrónica','Ingeniería en Sistemas Productivos','Ingeniería en Mantenimiento Industrial','Licenciatura en Innovación de Negocios y Mercadotecnia','Licenciatura en Gestión Institucional Educativa y Curricular','TSU en Lengua Inglesa','TSU en Tecnologías de la Información área Desarrollo de Software Multiplataforma','TSU en Desarrollo de Negocios área Mercadotecnia','TSU en Mantenimiento área Industrial','TSU en Procesos Industriales área Manufactura','TSU en Mecatrónica área Automatización') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `f_entrega` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
-  `f_aprobado_instructor` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `f_aprobado_tutor` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `f_aprobado_formador` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `idTutor` int NOT NULL,
-  `idInstructor` int NOT NULL,
-  `idFormador` int NOT NULL,
-  `empresa` text COLLATE utf8mb4_general_ci NOT NULL,
-  `semana` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+CREATE TABLE `reportes` (
+  `idReporte` int(11) NOT NULL,
+  `idAlumno` int(11) NOT NULL,
+  `matricula` text NOT NULL,
+  `nombres` text NOT NULL,
+  `apellidos` text NOT NULL,
+  `carrera` enum('Ingeniería en Desarrollo y Gestión de Software','Ingeniería en Mecatrónica','Ingeniería en Sistemas Productivos','Ingeniería en Mantenimiento Industrial','Licenciatura en Innovación de Negocios y Mercadotecnia','Licenciatura en Gestión Institucional Educativa y Curricular','TSU en Lengua Inglesa','TSU en Tecnologías de la Información área Desarrollo de Software Multiplataforma','TSU en Desarrollo de Negocios área Mercadotecnia','TSU en Mantenimiento área Industrial','TSU en Procesos Industriales área Manufactura','TSU en Mecatrónica área Automatización') NOT NULL,
+  `f_entrega` varchar(10) NOT NULL,
+  `f_aprobado_instructor` varchar(10) DEFAULT NULL,
+  `f_aprobado_tutor` varchar(10) DEFAULT NULL,
+  `f_aprobado_formador` varchar(10) DEFAULT NULL,
+  `idTutor` int(11) NOT NULL,
+  `idInstructor` int(11) NOT NULL,
+  `idFormador` int(11) NOT NULL,
+  `empresa` text NOT NULL,
+  `semana` varchar(11) NOT NULL,
   `f_Inicio` date NOT NULL,
   `f_Fin` date NOT NULL,
-  `cuatrimestre` text COLLATE utf8mb4_general_ci NOT NULL,
-  `resumen_L` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `resumen_M` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `resumen_Mi` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `resumen_J` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `resumen_V` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `fecha_L` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `img_L` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
-  `img_M` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
-  `img_Mi` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
-  `img_J` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
-  `img_V` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
-  `fecha_M` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `fecha_Mi` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `fecha_J` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `fecha_V` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `retro_tutor` varchar(350) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `retro_instructor` varchar(350) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `estatus_tutor` enum('aprobado','pendiente','no_aprobado','sin_revisar') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'sin_revisar',
-  `estatus_instructor` enum('aprobado','pendiente','no_aprobado','sin_revisar') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'sin_revisar',
-  PRIMARY KEY (`idReporte`)
-) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `cuatrimestre` text NOT NULL,
+  `resumen_L` mediumtext DEFAULT NULL,
+  `resumen_M` mediumtext DEFAULT NULL,
+  `resumen_Mi` mediumtext DEFAULT NULL,
+  `resumen_J` mediumtext DEFAULT NULL,
+  `resumen_V` mediumtext DEFAULT NULL,
+  `fecha_L` varchar(10) DEFAULT NULL,
+  `img_L` mediumtext NOT NULL,
+  `img_M` mediumtext NOT NULL,
+  `img_Mi` mediumtext NOT NULL,
+  `img_J` mediumtext NOT NULL,
+  `img_V` mediumtext NOT NULL,
+  `fecha_M` varchar(10) DEFAULT NULL,
+  `fecha_Mi` varchar(10) DEFAULT NULL,
+  `fecha_J` varchar(10) DEFAULT NULL,
+  `fecha_V` varchar(10) DEFAULT NULL,
+  `retro_tutor` varchar(350) DEFAULT NULL,
+  `retro_instructor` varchar(350) DEFAULT NULL,
+  `estatus_tutor` enum('aprobado','pendiente','no_aprobado','sin_revisar') NOT NULL DEFAULT 'sin_revisar',
+  `estatus_instructor` enum('aprobado','pendiente','no_aprobado','sin_revisar') NOT NULL DEFAULT 'sin_revisar'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `reportes`
@@ -925,7 +867,6 @@ INSERT INTO `reportes` (`idReporte`, `idAlumno`, `matricula`, `nombres`, `apelli
 --
 -- Disparadores `reportes`
 --
-DROP TRIGGER IF EXISTS `tr_actualizar_fecha_aprobado_formador`;
 DELIMITER $$
 CREATE TRIGGER `tr_actualizar_fecha_aprobado_formador` BEFORE UPDATE ON `reportes` FOR EACH ROW BEGIN
     IF NEW.estatus_instructor = 'aprobado' AND NEW.estatus_tutor = 'aprobado' THEN
@@ -936,7 +877,6 @@ CREATE TRIGGER `tr_actualizar_fecha_aprobado_formador` BEFORE UPDATE ON `reporte
 END
 $$
 DELIMITER ;
-DROP TRIGGER IF EXISTS `tr_actualizar_fecha_aprobado_instructor`;
 DELIMITER $$
 CREATE TRIGGER `tr_actualizar_fecha_aprobado_instructor` BEFORE UPDATE ON `reportes` FOR EACH ROW BEGIN
     IF NEW.estatus_instructor = 'aprobado' THEN
@@ -947,7 +887,6 @@ CREATE TRIGGER `tr_actualizar_fecha_aprobado_instructor` BEFORE UPDATE ON `repor
 END
 $$
 DELIMITER ;
-DROP TRIGGER IF EXISTS `tr_actualizar_fecha_aprobado_tutor`;
 DELIMITER $$
 CREATE TRIGGER `tr_actualizar_fecha_aprobado_tutor` BEFORE UPDATE ON `reportes` FOR EACH ROW BEGIN
     IF NEW.estatus_tutor = 'aprobado' THEN
@@ -962,21 +901,41 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `role`
+--
+
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `enabled` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `role`
+--
+
+INSERT INTO `role` (`id`, `name`, `description`, `created_at`, `updated_at`, `enabled`) VALUES
+(1, 'admin', NULL, '2024-02-17 01:36:07', '2024-02-17 01:36:25', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `subdirectores`
 --
 
-DROP TABLE IF EXISTS `subdirectores`;
-CREATE TABLE IF NOT EXISTS `subdirectores` (
-  `idSubdirector` int NOT NULL AUTO_INCREMENT,
-  `tipo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `carrera` enum('Ingeniería en Desarrollo y Gestión de Software','Ingeniería en Mecatrónica','Ingeniería en Sistemas Productivos','Ingeniería en Mantenimiento Industrial','Licenciatura en Innovación de Negocios y Mercadotecnia','Licenciatura en Gestión Institucional Educativa y Curricular','TSU en Lengua Inglesa','TSU en Tecnologías de la Información área Desarrollo de Software Multiplataforma','TSU en Desarrollo de Negocios área Mercadotecnia','TSU en Mantenimiento área Industrial','TSU en Procesos Industriales área Manufactura','TSU en Mecatrónica área Automatización') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `matricula` int NOT NULL,
-  `nombres` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `apellidos` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `usuario` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`idSubdirector`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `subdirectores` (
+  `idSubdirector` int(11) NOT NULL,
+  `tipo` varchar(100) NOT NULL,
+  `carrera` enum('Ingeniería en Desarrollo y Gestión de Software','Ingeniería en Mecatrónica','Ingeniería en Sistemas Productivos','Ingeniería en Mantenimiento Industrial','Licenciatura en Innovación de Negocios y Mercadotecnia','Licenciatura en Gestión Institucional Educativa y Curricular','TSU en Lengua Inglesa','TSU en Tecnologías de la Información área Desarrollo de Software Multiplataforma','TSU en Desarrollo de Negocios área Mercadotecnia','TSU en Mantenimiento área Industrial','TSU en Procesos Industriales área Manufactura','TSU en Mecatrónica área Automatización') NOT NULL,
+  `matricula` int(11) NOT NULL,
+  `nombres` varchar(300) NOT NULL,
+  `apellidos` varchar(300) NOT NULL,
+  `usuario` varchar(300) NOT NULL,
+  `password` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `subdirectores`
@@ -988,19 +947,31 @@ INSERT INTO `subdirectores` (`idSubdirector`, `tipo`, `carrera`, `matricula`, `n
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tokens`
+--
+
+CREATE TABLE `tokens` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `expiry_date` datetime NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tutores`
 --
 
-DROP TABLE IF EXISTS `tutores`;
-CREATE TABLE IF NOT EXISTS `tutores` (
-  `idTutor` int NOT NULL AUTO_INCREMENT,
-  `matricula` int NOT NULL,
-  `nombres` text COLLATE utf8mb4_general_ci NOT NULL,
-  `apellidos` text COLLATE utf8mb4_general_ci NOT NULL,
-  `usuario` text COLLATE utf8mb4_general_ci NOT NULL,
-  `password` text COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`idTutor`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `tutores` (
+  `idTutor` int(11) NOT NULL,
+  `matricula` int(11) NOT NULL,
+  `nombres` text NOT NULL,
+  `apellidos` text NOT NULL,
+  `usuario` text NOT NULL,
+  `password` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tutores`
@@ -1011,6 +982,369 @@ INSERT INTO `tutores` (`idTutor`, `matricula`, `nombres`, `apellidos`, `usuario`
 (2, 15156, 'Ulises', 'Rodriguez', '15156', 'miWqL7'),
 (3, 12515, 'Abimael', 'Gonzales', '12515', 'etYgBD');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
+  `fullname` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `enabled` tinyint(1) DEFAULT NULL,
+  `role_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `fullname`, `email`, `password`, `created_at`, `updated_at`, `enabled`, `role_id`) VALUES
+(10, 'Jesus', 'Jesus@gmail.com', '$2y$12$Z5XLLF.JnmOwKHDWG9mf8OPZrZjsTnClskBkPDb4CiunP/XxPHhn6', '2024-03-02 01:45:14', '2024-03-02 01:45:14', NULL, 1),
+(11, 'Sem', 'sem@gmail.com', '$2y$12$OTwsOpnetiY0HAqPqYDwYOoHrn8Nm4.AoU9R9YMbB6EH1O4vAwSBC', '2024-03-02 01:59:32', '2024-03-02 01:59:32', NULL, 1);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `administradores`
+--
+ALTER TABLE `administradores`
+  ADD PRIMARY KEY (`idAdministrador`);
+
+--
+-- Indices de la tabla `alumnos`
+--
+ALTER TABLE `alumnos`
+  ADD PRIMARY KEY (`idAlumno`),
+  ADD KEY `fk_alumnos_empresas` (`idEmpresa`);
+
+--
+-- Indices de la tabla `alumnos_docentes`
+--
+ALTER TABLE `alumnos_docentes`
+  ADD KEY `idAlumno` (`idAlumno`),
+  ADD KEY `idDocente` (`idDocente`);
+
+--
+-- Indices de la tabla `alumnos_postulados`
+--
+ALTER TABLE `alumnos_postulados`
+  ADD PRIMARY KEY (`idPostulado`);
+
+--
+-- Indices de la tabla `asignaturas`
+--
+ALTER TABLE `asignaturas`
+  ADD PRIMARY KEY (`idAsignatura`),
+  ADD KEY `cuatrimestre_id` (`idCuatrimestre`);
+
+--
+-- Indices de la tabla `borradores`
+--
+ALTER TABLE `borradores`
+  ADD PRIMARY KEY (`idBorrador`),
+  ADD KEY `idAlumno` (`idAlumno`);
+
+--
+-- Indices de la tabla `carreras`
+--
+ALTER TABLE `carreras`
+  ADD PRIMARY KEY (`idCarrera`);
+
+--
+-- Indices de la tabla `cuatrimestres`
+--
+ALTER TABLE `cuatrimestres`
+  ADD PRIMARY KEY (`idCuatrimestre`);
+
+--
+-- Indices de la tabla `directores`
+--
+ALTER TABLE `directores`
+  ADD PRIMARY KEY (`idDirector`);
+
+--
+-- Indices de la tabla `docentes`
+--
+ALTER TABLE `docentes`
+  ADD PRIMARY KEY (`idDocente`);
+
+--
+-- Indices de la tabla `edit_reportes`
+--
+ALTER TABLE `edit_reportes`
+  ADD PRIMARY KEY (`idEReporte`),
+  ADD KEY `idAlumno` (`idAlumno`);
+
+--
+-- Indices de la tabla `empresas`
+--
+ALTER TABLE `empresas`
+  ADD PRIMARY KEY (`idEmpresa`);
+
+--
+-- Indices de la tabla `empresas_postuladas`
+--
+ALTER TABLE `empresas_postuladas`
+  ADD PRIMARY KEY (`idEmpresaPostulada`);
+
+--
+-- Indices de la tabla `formadores`
+--
+ALTER TABLE `formadores`
+  ADD PRIMARY KEY (`idFormador`);
+
+--
+-- Indices de la tabla `generaciones`
+--
+ALTER TABLE `generaciones`
+  ADD PRIMARY KEY (`idGeneracion`);
+
+--
+-- Indices de la tabla `historial_docentes`
+--
+ALTER TABLE `historial_docentes`
+  ADD PRIMARY KEY (`idHistorial`),
+  ADD KEY `idInstructor` (`idDocente`),
+  ADD KEY `idDocente` (`idDocente`),
+  ADD KEY `idAlumno_2` (`idAlumno`);
+
+--
+-- Indices de la tabla `historial_instructores`
+--
+ALTER TABLE `historial_instructores`
+  ADD PRIMARY KEY (`idHistorial`),
+  ADD KEY `idAlumno` (`idAlumno`),
+  ADD KEY `idInstructor` (`idInstructor`);
+
+--
+-- Indices de la tabla `historial_tutores`
+--
+ALTER TABLE `historial_tutores`
+  ADD PRIMARY KEY (`idHistorial`),
+  ADD KEY `idAlumno` (`idAlumno`),
+  ADD KEY `idTutor` (`idTutor`);
+
+--
+-- Indices de la tabla `instructores`
+--
+ALTER TABLE `instructores`
+  ADD PRIMARY KEY (`idInstructor`);
+
+--
+-- Indices de la tabla `puestos`
+--
+ALTER TABLE `puestos`
+  ADD PRIMARY KEY (`idPuesto`);
+
+--
+-- Indices de la tabla `puestos_asignaturas`
+--
+ALTER TABLE `puestos_asignaturas`
+  ADD PRIMARY KEY (`idPuestoAsignatura`),
+  ADD KEY `idAsignatura` (`idAsignatura`),
+  ADD KEY `fk_puestos` (`idPuesto`);
+
+--
+-- Indices de la tabla `reportes`
+--
+ALTER TABLE `reportes`
+  ADD PRIMARY KEY (`idReporte`);
+
+--
+-- Indices de la tabla `role`
+--
+ALTER TABLE `role`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `subdirectores`
+--
+ALTER TABLE `subdirectores`
+  ADD PRIMARY KEY (`idSubdirector`);
+
+--
+-- Indices de la tabla `tokens`
+--
+ALTER TABLE `tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `token` (`token`),
+  ADD KEY `expiry_date` (`expiry_date`);
+
+--
+-- Indices de la tabla `tutores`
+--
+ALTER TABLE `tutores`
+  ADD PRIMARY KEY (`idTutor`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `role_id` (`role_id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `administradores`
+--
+ALTER TABLE `administradores`
+  MODIFY `idAdministrador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `alumnos`
+--
+ALTER TABLE `alumnos`
+  MODIFY `idAlumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+
+--
+-- AUTO_INCREMENT de la tabla `alumnos_postulados`
+--
+ALTER TABLE `alumnos_postulados`
+  MODIFY `idPostulado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `asignaturas`
+--
+ALTER TABLE `asignaturas`
+  MODIFY `idAsignatura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
+-- AUTO_INCREMENT de la tabla `borradores`
+--
+ALTER TABLE `borradores`
+  MODIFY `idBorrador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+
+--
+-- AUTO_INCREMENT de la tabla `carreras`
+--
+ALTER TABLE `carreras`
+  MODIFY `idCarrera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de la tabla `cuatrimestres`
+--
+ALTER TABLE `cuatrimestres`
+  MODIFY `idCuatrimestre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `directores`
+--
+ALTER TABLE `directores`
+  MODIFY `idDirector` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `docentes`
+--
+ALTER TABLE `docentes`
+  MODIFY `idDocente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `edit_reportes`
+--
+ALTER TABLE `edit_reportes`
+  MODIFY `idEReporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+
+--
+-- AUTO_INCREMENT de la tabla `empresas`
+--
+ALTER TABLE `empresas`
+  MODIFY `idEmpresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT de la tabla `empresas_postuladas`
+--
+ALTER TABLE `empresas_postuladas`
+  MODIFY `idEmpresaPostulada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `formadores`
+--
+ALTER TABLE `formadores`
+  MODIFY `idFormador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de la tabla `generaciones`
+--
+ALTER TABLE `generaciones`
+  MODIFY `idGeneracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT de la tabla `historial_docentes`
+--
+ALTER TABLE `historial_docentes`
+  MODIFY `idHistorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de la tabla `historial_instructores`
+--
+ALTER TABLE `historial_instructores`
+  MODIFY `idHistorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `historial_tutores`
+--
+ALTER TABLE `historial_tutores`
+  MODIFY `idHistorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `instructores`
+--
+ALTER TABLE `instructores`
+  MODIFY `idInstructor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `puestos`
+--
+ALTER TABLE `puestos`
+  MODIFY `idPuesto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
+
+--
+-- AUTO_INCREMENT de la tabla `puestos_asignaturas`
+--
+ALTER TABLE `puestos_asignaturas`
+  MODIFY `idPuestoAsignatura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
+
+--
+-- AUTO_INCREMENT de la tabla `reportes`
+--
+ALTER TABLE `reportes`
+  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+
+--
+-- AUTO_INCREMENT de la tabla `subdirectores`
+--
+ALTER TABLE `subdirectores`
+  MODIFY `idSubdirector` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `tokens`
+--
+ALTER TABLE `tokens`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT de la tabla `tutores`
+--
+ALTER TABLE `tutores`
+  MODIFY `idTutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -1020,6 +1354,18 @@ INSERT INTO `tutores` (`idTutor`, `matricula`, `nombres`, `apellidos`, `usuario`
 --
 ALTER TABLE `alumnos`
   ADD CONSTRAINT `fk_alumnos_empresas` FOREIGN KEY (`idEmpresa`) REFERENCES `empresas` (`idEmpresa`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `tokens`
+--
+ALTER TABLE `tokens`
+  ADD CONSTRAINT `tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `usuario` (`id`);
+
+--
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

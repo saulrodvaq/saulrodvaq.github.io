@@ -1,10 +1,13 @@
 <?php
-$server="localhost"; //Lugar donde esta la base de datos.
-$usuario="root"; //Nombre de usuario (suele ser root).
-$password=""; //Contraseña (casi siempre esta vacía)
-$bd="dual_bd"; //Nombre de la base de datos.
-$conn=mysqli_connect($server,$usuario,$password,$bd); //Conectar la base de datos con las variables declaradas.
-if (!$conn) {
-  die("Conexión fallida: " . mysqli_connect_error());
+$server = "db"; // Lugar donde está la base de datos.
+$usuario = "mariadb"; // Nombre de usuario (suele ser root).
+$password = "mariadb"; // Contraseña (casi siempre está vacía).
+$bd = "mariadb"; // Nombre de la base de datos.
+
+// Conexión a la base de datos utilizando MySQLi.
+$conn = new mysqli($server, $usuario, $password, $bd);
+
+// Verificar la conexión.
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
 }
-?>
