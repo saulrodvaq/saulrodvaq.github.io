@@ -1,0 +1,8 @@
+Base de datos en el archivo dual_bd.sql
+
+
+comando en terminal:
+mariadb --host localhost --port 3306 --user mariadb --password
+
+contraseña:
+mariadb
