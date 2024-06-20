@@ -1,0 +1,107 @@
+body {
+    font-family: Arial, sans-serif; padding: 0; margin: 0; background-attachment: fixed; transition: background 0.5s ease;
+}
+.gradient-1 {
+    background: rgb(201, 187, 6);
+    background: linear-gradient(90deg, rgba(201, 187, 6, 1) 0%, rgba(219, 212, 31, 1) 39%, rgba(207, 213, 8, 1) 100%);}
+.gradient-2 {
+    background: rgb(187, 143, 32);
+    background: linear-gradient(90deg, rgba(187, 143, 32, 1) 0%, rgba(224, 148, 91, 1) 35%, rgba(199, 153, 48, 1) 100%);}
+.gradient-3 {
+    background: rgb(201, 17, 6);
+    background: linear-gradient(90deg, rgba(201, 17, 6, 1) 0%, rgba(212, 136, 57, 1) 39%, rgba(199, 48, 48, 1) 100%);}
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-color: #FFD700;}
+.navbar-brand {
+    color: black; /* Color del texto del logo en la barra de navegación */
+    font-size: 2rem; /* Tamaño del texto del logo */
+    font-weight: bold; /* Peso de la fuente del logo */
+    text-decoration: none; /* Sin subrayado para el logo */
+    margin: 0; /* Eliminar margen del logo */
+}
+.cart-icon {
+    position: absolute;
+    top: 0;
+    right: 70px;
+    margin-top: 10px;
+}
+.cart-icon img {
+    width: 42px; /* Tamaño del icono del carrito */
+}
+.modal-body {
+    text-align: center;
+}
+.modal-content {
+    background-color: #f8f9fa; /* Color de fondo del modal */
+    color: black; /* Color del texto dentro del modal */
+}
+.modal-footer {
+    justify-content: center; /* Centrar botones del footer del modal */
+}
+.btn {
+    margin-top: 10px; /* Espacio superior para los botones */
+}
+.btn-success {
+    background-color: #28a745; /* Color de fondo del botón de agregar al carrito */
+    border-color: #28a745; /* Color del borde del botón de agregar al carrito */
+}
+.btn-info {
+    background-color: #17a2b8; /* Color de fondo del botón de detalles */
+    border-color: #17a2b8; /* Color del borde del botón de detalles */
+}
+.btn-secondary {
+    background-color: #6c757d; /* Color de fondo del botón secundario (Cancelar en el modal) */
+    border-color: #6c757d; /* Color del borde del botón secundario */
+}
+.btn-close {
+    color: black; /* Color de la cruz para cerrar el modal */
+}
+.cat-side-container {
+    position: fixed;
+    top: 16%;
+    transform: translateY(-40%);
+    z-index: 20;
+}
+#cat-left-container {
+    left: 0;
+}
+#cat-right-container {
+    right: 0;
+}
+#cat-left-image,
+#cat-right-image {
+    width: 70px; /* Tamaño de las imágenes del gato */
+    height: auto;
+}
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    display: none;
+}
+.loader img {
+    width: 100px; /* Tamaño de la imagen de carga */
+    height: auto;
+}
+.carousel {
+    background-color: orange; /* Color de fondo del carrusel */
+}
+.carousel-item img {
+    width: 40%; /* Tamaño deseado para las imágenes del carrusel */
+    height: auto;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto; /* Centrar horizontalmente */
+}
+.product-list .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.product-list .col-md-4 {
+    flex: 0 0 50%; /* Ajustar el ancho para ocupar todo el espacio disponible */
+    max-width: 50%; /* Ancho máximo */
+}

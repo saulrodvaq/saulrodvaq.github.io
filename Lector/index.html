@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EL LECTOR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
+<body class="gradient-1">
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <div class="container-fluid justify-content-center">
+            <h1 class="navbar-brand mb-0">EL LECTOR</h1>
+            <a href="cart.html" class="cart-icon d-lg-none"> <!-- Oculto en dispositivos grandes -->
+                <img src="carrito.png" alt="Carrito de Compras">
+            </a>
+        </div>
+        <!-- Visible solo en dispositivos grandes -->
+        <a href="cart.html" class="cart-icon d-none d-lg-block">
+            <img src="carrito.png" alt="Carrito de Compras">
+        </a>
+    </nav>
+    <div id="cat-left-container" class="cat-side-container">
+        <img src="cat.gif" alt="Cat" id="cat-left-image" class="img-fluid">
+    </div>
+    <div id="cat-right-container" class="cat-side-container">
+        <img src="cat.gif" alt="Cat" id="cat-right-image" class="img-fluid">
+    </div>
+    <div class="container mt-4">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="BatmanTheKillingJoke.png" class="d-block w-40" alt="Batman: The Killing Joke">
+                </div>
+                <div class="carousel-item">
+                    <img src="JJK.png" class="d-block w-40" alt="Jujutsu Kaisen Volumen 26">
+                </div>
+                <div class="carousel-item">
+                    <img src="IT.png" class="d-block w-40" alt="IT">
+                </div>
+            </div>
+            <button id="carousel-left" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button id="carousel-right" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="container mt-4">
+            <div class="product-list mt-4">
+                <h2 class="text-center">Productos</h2>
+                <div class="row row-cols-1 row-cols-md-2">
+                    <div class="col mb-3">
+                        <div class="card h-100 text-center" data-id="1" data-title="Batman: The Killing Joke" data-price="120" data-image="BatmanTheKillingJoke.png">
+                            <img src="BatmanTheKillingJoke.png" class="card-img-top img-fluid" alt="Batman: The Killing Joke">
+                            <div class="card-body">
+                                <h3 class="card-title">Batman: The Killing Joke</h3>
+                                <p class="card-text">Precio: $120</p>
+                                <button class="btn btn-success add-to-cart">Agregar al carrito</button>
+                                <button class="btn btn-info details-button" data-bs-toggle="modal" data-bs-target="#modal">Ver más a detalle</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-3">
+                        <div class="card h-100 text-center" data-id="2" data-title="Jujutsu Kaisen Volumen 26" data-price="100" data-image="JJK.png">
+                            <img src="JJK.png" class="card-img-top img-fluid" alt="Jujutsu Kaisen Volumen 26">
+                            <div class="card-body">
+                                <h3 class="card-title">Jujutsu Kaisen Volumen 26</h3>
+                                <p class="card-text">Precio: $100</p>
+                                <button class="btn btn-success add-to-cart">Agregar al carrito</button>
+                                <button class="btn btn-info details-button" data-bs-toggle="modal" data-bs-target="#modal">Ver más a detalle</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-3">
+                        <div class="card h-100 text-center" data-id="3" data-title="IT" data-price="700" data-image="IT.png">
+                            <img src="IT.png" class="card-img-top img-fluid" alt="IT">
+                            <div class="card-body">
+                                <h3 class="card-title">IT</h3>
+                                <p class="card-text">Precio: $700</p>
+                                <button class="btn btn-success add-to-cart">Agregar al carrito</button>
+                                <button class="btn btn-info details-button" data-bs-toggle="modal" data-bs-target="#modal">Ver más a detalle</button>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modal-title" class="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="modal-image" src="" alt="Producto" class="img-fluid mb-3">
+                    <p id="modal-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <p id="modal-price"></p>
+                </div>
+                <div class="modal-footer">
+                    <button id="modal-add-to-cart" class="btn btn-success">Agregar al carrito</button>
+                    <button id="modal-cancel" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <div id="loader" class="loader">
+        <img src="cargando.gif" alt="Cargando..." class="img-fluid">
+    </div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.custom-image {
+    max-width: 120px; /* Ajusta el tamaño máximo según tu preferencia */
+    height: auto; /* Esto asegura que la altura se ajuste proporcionalmente */
+}
+.navbar-brand {
+    margin-left: 2rem; /* Ajusta el margen izquierdo para mover hacia la izquierda */
+    font-size: 1.5rem; /* Ajusta el tamaño de la fuente según sea necesario */
+}
